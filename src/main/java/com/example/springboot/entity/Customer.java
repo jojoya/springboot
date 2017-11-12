@@ -3,6 +3,7 @@ package com.example.springboot.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Customer {
@@ -11,6 +12,7 @@ public class Customer {
     @GeneratedValue
     private int id;
     private String name;
+    @Min(value = 18, message = "未成年")
     private int age;
 
     //必须要有构造函数

@@ -4,8 +4,10 @@ import com.example.springboot.repository.CustomerRepository;
 import com.example.springboot.entity.Customer;
 import com.example.springboot.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,24 +25,26 @@ public class CustomerController {
 
     /*添加一个客户*/
     @PostMapping(value = "/addCustomer")
-    private Customer customerAdd(@RequestParam("name") String name,
-                                 @RequestParam("age") Integer age) {
-        Customer customer = new Customer();
-        customer.setName(name);
-        customer.setAge(age);
-
+    private Customer customerAdd(@Valid Customer customer,BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        customer.setName(customer.getName());
+        customer.setAge(customer.getAge());
         return customerRepository.save(customer);
     }
 
     /*更新客户信息*/
     @PutMapping(value = "/updateCustomer")
-    private Customer customerUpdate(@RequestParam("id") Integer id,
-                                    @RequestParam("name") String name,
-                                    @RequestParam("age") Integer age) {
-        Customer customer = new Customer();
-        customer.setId(id);
-        customer.setAge(age);
-        customer.setName(name);
+    private Customer customerUpdate(@Valid Customer customer, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+//        customer.setId(customer.getId());
+//        customer.setAge(customer.getAge());
+//        customer.setName(customer.getName());
 
         return customerRepository.save(customer);
     }
