@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Customer {
@@ -11,6 +13,8 @@ public class Customer {
     @Id
     @GeneratedValue
     private int id;
+    @NotNull
+    @Size(min=5,max = 8)
     private String name;
     @Min(value = 18, message = "未成年")
     private int age;
