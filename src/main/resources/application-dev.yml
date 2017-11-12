@@ -1,0 +1,8 @@
+server:
+  context-path: /dev
+
+person:
+  name: 开发环境
+  age: 10
+
+

@@ -1,0 +1,8 @@
+server:
+  context-path: /pro
+
+person:
+  name: 生产环境
+  age: 20
+
+
