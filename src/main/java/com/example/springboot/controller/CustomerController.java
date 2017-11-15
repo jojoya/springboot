@@ -19,7 +19,7 @@ public class CustomerController {
 
     /*查询客户列表*/
     @GetMapping(value = "/getCustomerList")
-    private List<Customer> customerList() {
+    public List<Customer> customerList() {
         return customerRepository.findAll();
     }
 
@@ -51,7 +51,7 @@ public class CustomerController {
 
     /*根据id查询客户*/
     @GetMapping(value = "/getCustomer/{id}")
-    private Customer customerFindOne(@PathVariable("id") Integer id) {
+    public Customer customerFindOne(@PathVariable("id") Integer id) {
         return customerRepository.findOne(id);
     }
 

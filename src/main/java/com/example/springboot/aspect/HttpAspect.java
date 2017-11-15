@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HttpAspect {
 
-    @Before("execution(public * com.example.springboot.controller.CustomerController.*(..))")
+    @Before("execution( * com.example.springboot.controller.CustomerController.customerList(..))")
     public void log(){
         System.out.println(111111);
     }
