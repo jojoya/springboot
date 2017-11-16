@@ -1,5 +1,7 @@
 package com.example.springboot.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,8 +16,9 @@ public class Customer {
     @Id
     @GeneratedValue
     private int id;
-    @NotNull
-    @Size(min=1,max = 100)
+//    @NotNull(message = "name不能为Null")
+    @NotEmpty(message = "name不能为Empty")
+    @Size(min=10,max = 100, message = "name字段长度必须在10-100之间")
     private String name;
     @Min(value = 18, message = "未成年")
     @Max(value = 150,message = "非常人")

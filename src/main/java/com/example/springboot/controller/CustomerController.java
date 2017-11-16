@@ -1,9 +1,11 @@
 package com.example.springboot.controller;
 
 import com.example.springboot.aspect.HttpAspect;
+import com.example.springboot.entity.Result;
 import com.example.springboot.repository.CustomerRepository;
 import com.example.springboot.entity.Customer;
 import com.example.springboot.service.CustomerService;
+import com.example.springboot.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +36,13 @@ public class CustomerController {
 
     /*添加一个客户*/
     @PostMapping(value = "/addCustomer")
-    public Customer customerAdd(@Valid Customer customer,BindingResult bindingResult) {
+    public Result<Customer> customerAdd(@Valid Customer customer, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+             return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
         customer.setName(customer.getName());
         customer.setAge(customer.getAge());
-        return customerRepository.save(customer);
+        return ResultUtil.success(customerRepository.save(customer));
     }
 
     /*更新客户信息*/
