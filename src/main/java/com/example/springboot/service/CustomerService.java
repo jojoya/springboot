@@ -1,5 +1,7 @@
 package com.example.springboot.service;
 
+import com.example.springboot.enums.CustomerAgeResultEnum;
+import com.example.springboot.exception.CustomerException;
 import com.example.springboot.repository.CustomerRepository;
 import com.example.springboot.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,17 @@ public class CustomerService {
 
         System.out.println("2/2");
 
+    }
+
+    public void getAge(Integer id) throws Exception{
+        Customer customer = customerRepository.findOne(id);
+        Integer age = customer.getAge();
+        if(age<10){
+            throw new CustomerException(CustomerAgeResultEnum.PRIMARY_SCHOOL);
+        }else if(age>=10 && age <16){
+            throw new CustomerException(CustomerAgeResultEnum.MIDDLE_SCHOOL);
+        }else{
+            throw new CustomerException(CustomerAgeResultEnum.SOCIAL_MAN);
+        }
     }
 }

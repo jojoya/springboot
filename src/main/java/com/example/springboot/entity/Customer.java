@@ -16,10 +16,12 @@ public class Customer {
     @Id
     @GeneratedValue
     private int id;
+
 //    @NotNull(message = "name不能为Null")
     @NotEmpty(message = "name不能为Empty")
     @Size(min=10,max = 100, message = "name字段长度必须在10-100之间")
     private String name;
+
     @Min(value = 18, message = "未成年")
     @Max(value = 150,message = "非常人")
     private int age;
@@ -54,10 +56,10 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
+        return "{" +
+                "\"id\":" + id +
+                ", \"name\":\"" + name + '\"' +
+                ", \"age\":" + age +
                 '}';
     }
 }

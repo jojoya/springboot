@@ -95,4 +95,10 @@ public class CustomerController {
     public void customerTwo(){
         customerService.insertTwo();
     }
+
+    @GetMapping("/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws Exception{
+        customerService.getAge(id);
+    }
+
 }

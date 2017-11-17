@@ -1,5 +1,6 @@
 package com.example.springboot.aspect;
 
+import com.example.springboot.entity.Result;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +11,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 
 /**
  * Created by user on 2017/11/14.
@@ -52,9 +51,8 @@ public class HttpAspect {
         logger.info("---After---");
     }
 
-    @AfterReturning(returning = "object", pointcut = "log()")
-    public void doAfterReturning(Object object){
-        logger.info("---AfterReturning---");
-        logger.info("response{}",object.toString());
+    @AfterReturning(returning = "result", pointcut = "log()")
+    public void doAfterReturning(Result result){
+        logger.info("response{}",result.toString());
     }
 }
