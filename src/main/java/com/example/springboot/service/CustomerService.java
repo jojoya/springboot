@@ -44,4 +44,8 @@ public class CustomerService {
             throw new CustomerException(CustomerAgeResultEnum.SOCIAL_MAN);
         }
     }
+
+    public Customer getOne(int id){
+        return customerRepository.findOne(id);
+    }
 }

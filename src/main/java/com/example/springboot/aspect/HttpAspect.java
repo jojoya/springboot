@@ -34,7 +34,7 @@ public class HttpAspect {
         // 请求对象
         HttpServletRequest request = attributes.getRequest();
         //url
-        logger.info("url={}", request.getRequestURL());
+        logger.info("method:{},url:{},args:{}", request.getMethod(), request.getRequestURL(),joinPoint.getArgs());
         //method
         logger.info("method={}", request.getMethod());
         //ip

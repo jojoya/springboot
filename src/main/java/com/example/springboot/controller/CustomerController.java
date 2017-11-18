@@ -1,9 +1,8 @@
 package com.example.springboot.controller;
 
-import com.example.springboot.aspect.HttpAspect;
+import com.example.springboot.entity.Customer;
 import com.example.springboot.entity.Result;
 import com.example.springboot.repository.CustomerRepository;
-import com.example.springboot.entity.Customer;
 import com.example.springboot.service.CustomerService;
 import com.example.springboot.utils.ResultUtil;
 import org.slf4j.Logger;
@@ -38,7 +37,7 @@ public class CustomerController {
     @PostMapping(value = "/addCustomer")
     public Result<Customer> customerAdd(@Valid Customer customer, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-             return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+             return ResultUtil.error(999,bindingResult.getFieldError().getDefaultMessage());
         }
         customer.setName(customer.getName());
         customer.setAge(customer.getAge());
@@ -46,17 +45,16 @@ public class CustomerController {
     }
 
     /*更新客户信息*/
-    @PutMapping(value = "/updateCustomer")
-    public Customer customerUpdate(@Valid Customer customer, BindingResult bindingResult) {
+    @PostMapping(value = "/updateCustomer")
+    public Result<Customer> customerUpdate(@Valid Customer customer, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(999,bindingResult.getFieldError().getDefaultMessage());
         }
-//        customer.setId(customer.getId());
-//        customer.setAge(customer.getAge());
-//        customer.setName(customer.getName());
+        customer.setId(customer.getId());
+        customer.setAge(customer.getAge());
+        customer.setName(customer.getName());
 
-        return customerRepository.save(customer);
+        return ResultUtil.success(customerRepository.save(customer));
     }
 
     /*根据id查询客户*/
