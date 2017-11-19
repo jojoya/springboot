@@ -65,7 +65,7 @@ public class Customer extends BaseEntity{
     @Override
     public String toString() {
         return "{" +
-                "\"id\":" + serialVersionUID +
+                "\"id\":" + id +
                 ", \"name\":\"" + name + '\"' +
                 ", \"age\":" + age +
                 '}';
