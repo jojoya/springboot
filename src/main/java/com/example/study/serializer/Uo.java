@@ -2,6 +2,7 @@ package com.example.study.serializer;
 
 import com.alibaba.fastjson.annotation.JSONType;
 
+import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,19 +15,11 @@ import java.util.Date;
 public class Uo implements Serializable {
 
     private int id;
-
     private String name; // 姓名
     private int age; // 年龄
     private Date date;
     private String sex;
-
-
-
-
-
-
-
-
+    private Object info;
 
 
 
@@ -69,5 +62,13 @@ public class Uo implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public Object getInfo() {
+        return info;
+    }
+
+    public void setInfo(Object info) {
+        this.info = info;
     }
 }

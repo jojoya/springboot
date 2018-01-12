@@ -1,6 +1,7 @@
 package com.example.study.serializer;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPath;
 import org.junit.Assert;
 
@@ -43,23 +44,26 @@ public class UserTest {
 
     public static void main(String [] args) throws Exception{
 
-        // JSONType ignores
-        Uo uo = new Uo();
-        uo.setAge(10);
-        uo.setDate(new Date());
-        uo.setId(1);
-        uo.setName("李四");
-        uo.setSex("男");
-        System.out.println("@JSONType ignores --> " + JSON.toJSONString(uo));
-
         // JSONType includes
         Uo1 uo1 = new Uo1();
         uo1.setAge(10);
         uo1.setDate(new Date());
         uo1.setId(1);
-        uo1.setName("李四");
-        uo1.setSex("男");
+        uo1.setName("李Inner");
+        uo1.setSex("男Inner");
         System.out.println("@JSONType includes --> " + JSON.toJSONString(uo1));
+
+
+        // JSONType ignores
+        Uo uo = new Uo();
+        uo.setAge(10);
+        uo.setDate(new Date());
+        uo.setId(1);
+        uo.setName("李outer");
+        uo.setSex("男outer");
+        uo.setInfo(uo1);
+        System.out.println("@JSONType ignores --> " + JSON.toJSONString(uo));
+
 
         // 序列化的时候, 不序列化id, sex字段序列化成gender
         User user = new User();
